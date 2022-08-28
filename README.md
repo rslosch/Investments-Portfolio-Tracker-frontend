@@ -9,7 +9,7 @@ This is a frontend application for tracking your current investments. The object
 Fork and clone
 Run npm install (or yarn)
 Run npm start
-Follow directions for the backend [include URL here]
+Follow directions for the backend [https://github.com/rslosch/Investments-Portfolio-Tracker-backend]
 
 ### Features
 * Navigtion bar
