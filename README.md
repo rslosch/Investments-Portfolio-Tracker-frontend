@@ -1,5 +1,5 @@
 # Investment Portfolio Tracker
-This is a frontend application for tracking your current investments. The objective of this app is to easily display all of your open positions in one place and to be reminded of the status of your investments.
+This is a frontend application for tracking your current option strategies. The objective of this app is to easily display all of your open strategies in one place and to be reminded of the status of your positions.
 
 ### Requirements
 * node version 16.13.2
@@ -14,11 +14,11 @@ Follow directions for the backend [https://github.com/rslosch/Investments-Portfo
 ### Features
 * Navigtion bar
 * Landng page 
-* List of open positions
-* Form to submit new investment positions
-* Details of position when selected
-* Able to update target selling price / mark position as partially closed
+* List of open strategies
+* Form to submit new investment strategy
+* Details of strategy legs when selected
+* Able to update contracts opened on each individual leg
 * Able to delete position 
 
 ### Stretch Goals
-* Able to calculate and display profit/loss information
+* Able to calculate and display momentary profit/loss information
