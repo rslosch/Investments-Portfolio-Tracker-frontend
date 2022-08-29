@@ -15,10 +15,10 @@ Follow directions for the backend [https://github.com/rslosch/Investments-Portfo
 * Navigtion bar
 * Landng page 
 * List of open strategies
-* Form to submit new investment strategy
 * Details of strategy legs when selected
-* Able to update contracts opened on each individual leg
-* Able to delete position 
+* Form to submit new investment strategy
+* Update number of contracts opened on each individual leg
+* Delete strategy
 
 ### Stretch Goals
 * Able to calculate and display momentary profit/loss information
