@@ -10,7 +10,6 @@ const Strategies = () => {
         fetch("http://localhost:9292/strategies")
         .then(r => r.json())
         .then(data => {
-            console.log(data)
             setStrategies(data)
         })
     },[])
