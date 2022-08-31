@@ -31,8 +31,8 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/strategies" element={<Strategies strategies={strategies}/>} />
-        <Route exact path="/strategies/new" element={<StrategyForm onFormSubmit={addForm} />} />
-        <Route path="/strategies/:id" element={<Strategy strategies={strategies} setStrategies={setStrategies}/>} /> 
+        <Route exact path="/strategies/new" element={<StrategyForm strategies={strategies} setStrategies={setStrategies} onFormSubmit={addForm} />} />
+        <Route path="/strategies/:id" element={<Strategy strategies={strategies} onFormSubmit={addForm}/>} /> 
       </Routes>
     </Router>
   );

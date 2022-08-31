@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
+import {useNavigate,useParams} from 'react-router-dom'
 import {Grid, TextField, Typography, Stack, Checkbox, FormControlLabel, FormGroup} from '@mui/material'
 
-const LegForm = ({strategy, onFormSubmit}) => {
+const LegForm = ({ onFormSubmit}) => {
+
+    const navigate = useNavigate()
+    let params = useParams()
 
     const [form, setForm] = useState({
         buy: false,
@@ -11,13 +15,13 @@ const LegForm = ({strategy, onFormSubmit}) => {
         strike_price: "",
         no_contracts: "",
         expirate_date: "",
-        strategy_id: strategy.id
+        strategy_id: params.id
       })
     
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        fetch(`http://localhost:9292/${strategy.id}`,{
+        fetch(`http://localhost:9292/strategies/${params.id}`,{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -25,8 +29,9 @@ const LegForm = ({strategy, onFormSubmit}) => {
                 body: JSON.stringify(form)
         })
         .then(r => r.json())
-        .then(data => {onFormSubmit(data)
-            // navigate(`/strategies/${data.id}`)
+        .then(data => {
+            onFormSubmit(data)
+            navigate(`/strategies/${data.id}`)
         })
     }
 
