@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import {Grid, TextField, Typography, Stack, Checkbox, FormControlLabel, FormGroup} from '@mui/material'
 
 const LegForm = ({strategy, onFormSubmit}) => {
-    const [checked, setChecked] = useState(false)
 
     const [form, setForm] = useState({
         buy: false,
@@ -18,7 +17,7 @@ const LegForm = ({strategy, onFormSubmit}) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        fetch(`http://localhost:9292/strategies/${strategy.id}`,{
+        fetch(`http://localhost:9292/${strategy.id}`,{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -42,7 +41,7 @@ const LegForm = ({strategy, onFormSubmit}) => {
 
   return (
     <Stack gap={3} textAlign="left">
-      <Typography variant="h4">Add a New Leg to this Strategy</Typography>
+      <Typography variant="h5">Add a New Leg to this Strategy</Typography>
 
       <form onSubmit={handleSubmit}>
           <Grid container direction="row">

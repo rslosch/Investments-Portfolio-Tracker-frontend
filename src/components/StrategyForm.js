@@ -23,7 +23,8 @@ const StrategyForm = ({onFormSubmit}) => {
          body: JSON.stringify(form)
     })
     .then(r => r.json())
-    .then(data => {onFormSubmit(data)
+    .then(data => {
+        onFormSubmit(data)
         navigate(`/strategies/${data.id}`)
     })
 }

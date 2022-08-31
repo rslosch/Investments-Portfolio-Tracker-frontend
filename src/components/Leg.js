@@ -15,14 +15,10 @@ const Leg = ({leg}) => {
     }else if (isSell && isPut){
         return <SellPut leg={leg}/>
     }else{
-
     }
-
-    
 }
 
 const BuyCall = ({leg}) => {
-    // console.log(leg.expirate_date.splice(5))
     return(
         <>
             <h1> ${leg.strike_price} Call</h1>

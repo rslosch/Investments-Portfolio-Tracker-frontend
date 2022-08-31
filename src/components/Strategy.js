@@ -1,51 +1,48 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState } from 'react'
 import Leg from './Leg'
 import { useParams } from 'react-router-dom'
 import { Button } from '@mui/material'
 import LegForm from './LegForm'
 
 
-const Strategy = () => {
-    const [strategy, setStrategy] = useState({
-        legs: []
-    })
-    const [legFormFlag, setLegFormFlag] = useState(false)
-
+const Strategy = ({strategies, setStrategies}) => {
     const params = useParams()
+    const [strategyLegs, setStrategyLegs] = useState(strategies.filter(strat => strat.id == params.id).map(s => s.legs))
 
-    useEffect(() => {
-        fetch(`http://localhost:9292/strategies/${params.id}`)
-        .then(r => r.json())
-        .then(data => {
-            setStrategy(data)
-        })
-    },[])
+    console.log(strategyLegs)
 
-    const legs = strategy.legs.map((leg) => <Leg key={leg.id} leg={leg} />)
+    // useEffect(() => {
+    //     fetch(`http://localhost:9292/strategies/${params.id}`)
+    //     .then(r => r.json())
+    //     .then(data => {
+    //         setStrategy(data)
+    //     })
+    // },[])
+
+    // const currentStratLegs = strategies.filter(strat => strat.id == params.id).map(s => s.legs)
+
+    const currentStratObj = strategies.filter(strat => strat.id == params.id).pop()
+
+    const displayLegs = strategyLegs[0].map(leg => <Leg key={leg.id} leg={leg} />)
+    debugger
 
     function addLeg(newLeg){
-        const updatedLegs = [...legs, newLeg]
-        setStrategy = setStrategy(updatedLegs)
+        const updatedLegs = [...strategyLegs, newLeg]
+        setStrategies(updatedLegs)
     }
 
-    // if(!legFormFlag){
         return (
             <div>
                 <br />
-                <h1>{strategy.ticker} || {strategy.name}</h1>
-                <h4> Number of legs: {strategy.no_legs}</h4>
+                <h1> {currentStratObj.ticker} || {currentStratObj.name}</h1>
+                <h4> Number of legs: {currentStratObj.no_legs} </h4>
                 <br />
-                {legs}
+                {displayLegs}
                 <br />
-                <LegForm strategy={strategy} onFormSubmit={addLeg} />
+                {/* <LegForm /> */}
                 <Button> Add a New Leg</Button>
             </div>
         )
-    // }else{
-    //     return(
-
-    //     )
-    // }
 }
 
 export default Strategy
