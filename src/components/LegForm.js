@@ -30,7 +30,7 @@ const LegForm = ({ onLegFormSubmit}) => {
         })
         .then(r => r.json())
         .then(data => {
-            navigate(`/strategies/${data.strategy_id}`)
+            // navigate(`/strategies/${data.strategy_id}`)
             onLegFormSubmit(data)
         })
     }
