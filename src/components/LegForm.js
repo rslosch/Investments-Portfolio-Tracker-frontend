@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {useNavigate,useParams} from 'react-router-dom'
 import {Grid, TextField, Typography, Stack, Checkbox, FormControlLabel, FormGroup} from '@mui/material'
 
-const LegForm = ({ onFormSubmit}) => {
+const LegForm = ({ onLegFormSubmit}) => {
 
     const navigate = useNavigate()
     let params = useParams()
@@ -21,7 +21,7 @@ const LegForm = ({ onFormSubmit}) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        fetch(`http://localhost:9292/strategies/${params.id}`,{
+        fetch(`http://localhost:9292/strategies/${params.id}/legs`,{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -30,8 +30,8 @@ const LegForm = ({ onFormSubmit}) => {
         })
         .then(r => r.json())
         .then(data => {
-            onFormSubmit(data)
-            navigate(`/strategies/${data.id}`)
+            navigate(`/strategies/${data.strategy_id}`)
+            onLegFormSubmit(data)
         })
     }
 
@@ -112,7 +112,7 @@ const LegForm = ({ onFormSubmit}) => {
                       sx={{mr: 2}}
                   />
               </Grid>
-              <input type="submit" value="Add to Portfolio" />
+              <input type="submit" value="Add to Strategy" />
           </Grid>
           
       </form>

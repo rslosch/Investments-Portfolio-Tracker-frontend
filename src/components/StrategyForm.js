@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {Grid, TextField, Typography, Stack} from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
-const StrategyForm = ({strategies, setStrategies, onFormSubmit}) => {
+const StrategyForm = ({onFormSubmit}) => {
   const navigate = useNavigate()
 
   const [form, setForm] = useState({
@@ -25,10 +25,10 @@ const StrategyForm = ({strategies, setStrategies, onFormSubmit}) => {
     })
     .then(r => r.json())
     .then(data => {
-        // onFormSubmit(data)
-        const updatedStrategies = [...strategies, data]
-        setStrategies(updatedStrategies)
         navigate(`/strategies/${data.id}`)
+        onFormSubmit(data)
+        // const updatedStrategies = [...strategies, data]
+        // setStrategies(updatedStrategies)
     })
 }
 

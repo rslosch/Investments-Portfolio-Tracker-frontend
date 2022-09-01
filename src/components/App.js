@@ -1,5 +1,5 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import NavBar from "./NavBar";
 import Home from "./Home";
 import Strategies from './Strategies';
@@ -25,14 +25,18 @@ function App() {
     setStrategies(updatedStrategies)
  }
 
+  function addLegForm(newLeg){
+
+ }
+
   return (
     <Router>
       <NavBar />
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/strategies" element={<Strategies strategies={strategies}/>} />
-        <Route exact path="/strategies/new" element={<StrategyForm strategies={strategies} setStrategies={setStrategies} onFormSubmit={addForm} />} />
-        <Route path="/strategies/:id" element={<Strategy strategies={strategies} onFormSubmit={addForm}/>} /> 
+        <Route exact path="/strategies" element={<Strategies strategies={strategies} />} />
+        <Route exact path="/strategies/new" element={<StrategyForm strategies={strategies} onFormSubmit={addForm} />} />
+        <Route path="/strategies/:id" element={<Strategy strategies={strategies} onFormSubmit={addForm} setStrategies={setStrategies}/>} /> 
       </Routes>
     </Router>
   );
