@@ -7,7 +7,6 @@ import LegForm from './LegForm'
 
 const Strategy = ({strategies, setStrategies}) => {
     const params = useParams()
-    // const [strategyID, setStrategyID] = useState(params.id)
     const id = params.id
     const strategy = strategies.find(strat => strat.id == id)
 
@@ -23,6 +22,15 @@ const Strategy = ({strategies, setStrategies}) => {
         setStrategies(updatedStrategies)
     }
 
+    // function handleDeleteLeg(legID) {
+    //     fetch(`http://localhost:9292/legs/${legID}`,{
+    //         method: "DELETE",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //     })
+    // }
+
     return (
         <div>
             <br />
@@ -33,12 +41,12 @@ const Strategy = ({strategies, setStrategies}) => {
                 <h4> Number of legs: {strategy.no_legs} </h4>               
             </>
 
-            : "error"
+            : "loading"
             }
             <br />
             {displayArr}
             <br />
-                <LegForm onLegFormSubmit={addLegForm}/*onFormSubmit={onFormSubmit}*/ />
+                <LegForm onLegFormSubmit={addLegForm} />
         </div>
     )
 }

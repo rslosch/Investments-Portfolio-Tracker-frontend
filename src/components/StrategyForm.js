@@ -27,8 +27,6 @@ const StrategyForm = ({onFormSubmit}) => {
     .then(data => {
         navigate(`/strategies/${data.id}`)
         onFormSubmit(data)
-        // const updatedStrategies = [...strategies, data]
-        // setStrategies(updatedStrategies)
     })
 }
 

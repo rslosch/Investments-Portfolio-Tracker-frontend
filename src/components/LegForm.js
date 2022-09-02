@@ -26,7 +26,7 @@ const LegForm = ({ onLegFormSubmit}) => {
             headers: {
                 "Content-Type": "application/json"
             },
-                body: JSON.stringify(form)
+            body: JSON.stringify(form) 
         })
         .then(r => r.json())
         .then(data => {

@@ -3,10 +3,10 @@ import {Link} from 'react-router-dom'
 import StrategyLink from "./StrategyLink"
 import { Button } from '@mui/material'
 
-const Strategies = ({strategies}) => {
+const Strategies = ({strategies, handleDelete}) => {
 
 
-    const strategiesList = strategies.map(strat => <StrategyLink key={strat.id} strategy={strat} />)
+    const strategiesList = strategies.map(strat => <StrategyLink key={strat.id} strategy={strat} handleClick={handleDelete}/>)
 
     return (
         <div>
