@@ -6,8 +6,7 @@ import LegForm from './LegForm'
 
 
 const Strategy = ({strategies, setStrategies}) => {
-    const params = useParams()
-    const id = params.id
+    const {id} = useParams()
     const strategy = strategies.find(strat => strat.id == id)
 
     let displayArr = "<p> loading... </p>"

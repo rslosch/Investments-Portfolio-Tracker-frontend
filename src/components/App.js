@@ -5,13 +5,13 @@ import Home from "./Home";
 import Strategies from './Strategies';
 import StrategyForm from './StrategyForm';
 import Strategy from './Strategy';
+import EditStrategy from './EditStrategy';
 // Look into hook makeStyles for custom styling
 
 
 function App() {
 
   const [strategies, setStrategies] = useState([])
-  const [deleteToggle, setDeleteToggle] = useState(true)
 
   useEffect(() => {
     fetch("http://localhost:9292/strategies")
@@ -19,7 +19,7 @@ function App() {
     .then(data => {
         setStrategies(data)
     })
-  },[deleteToggle])
+  },[])
 
   function addForm(newStrat){
     const updatedStrategies = [...strategies, newStrat]
@@ -36,7 +36,6 @@ function App() {
     .then(()=> {
       const updatedStrategies = strategies.filter(strat => strat.id != stratId)
       setStrategies(updatedStrategies)
-      setDeleteToggle(false)
     })
   }
 
@@ -47,6 +46,7 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/strategies" element={<Strategies strategies={strategies} handleDelete={handleDelete} />} />
         <Route exact path="/strategies/new" element={<StrategyForm strategies={strategies} onFormSubmit={addForm} />} />
+        <Route exact path="/strategies/:id/edit" element={<EditStrategy strategies={strategies} />} />
         <Route path="/strategies/:id" element={<Strategy strategies={strategies} onFormSubmit={addForm} setStrategies={setStrategies} handleDelete={handleDelete}/>} /> 
       </Routes>
     </Router>
