@@ -13,7 +13,7 @@ const Strategy = ({strategies, setStrategies}) => {
     let displayArr = "<p> loading... </p>"
 
     if (strategy) {
-        displayArr = strategy.legs.map(leg => <Leg key={leg.id} leg={leg} />)
+        displayArr = strategy.legs.map(leg => <Leg key={leg.id} leg={leg} handleLegDelete={handleLegDelete} />)
     }
 
     function addLegForm(newLeg){
@@ -22,14 +22,19 @@ const Strategy = ({strategies, setStrategies}) => {
         setStrategies(updatedStrategies)
     }
 
-    // function handleDeleteLeg(legID) {
-    //     fetch(`http://localhost:9292/legs/${legID}`,{
-    //         method: "DELETE",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //     })
-    // }
+    function handleLegDelete(legID, strategyID) {
+        fetch(`http://localhost:9292/legs/${legID}`,{
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        })
+        const updatedLegs = strategy.legs.filter(leg => leg.id != legID)
+        strategy.legs = updatedLegs
+        const updatedStrategies = strategies.map(strat => strat.id === strategyID ? strategy : strat)
+        setStrategies(updatedStrategies)
+
+    }
 
     return (
         <div>
