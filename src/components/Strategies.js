@@ -14,7 +14,7 @@ const Strategies = ({strategies, handleDelete}) => {
                 {strategiesList}
             </ul>
             <Link to="/strategies/new">
-                <Button >Add New Option Strategy</Button>
+                <Button variant="outlined" >Add New Option Strategy</Button>
             </Link>
         </div>
     )
