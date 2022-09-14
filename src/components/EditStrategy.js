@@ -27,6 +27,7 @@ const EditStrategy = ({onFormSubmit, strategies}) => {
     })
     .then(r => r.json())
     .then(data => {
+        console.log(data)
         navigate(`/strategies/${data.id}`)
         onFormSubmit(data)
     })

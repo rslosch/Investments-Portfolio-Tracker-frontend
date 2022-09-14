@@ -7,13 +7,26 @@ import LegForm from './LegForm'
 
 const Strategy = ({strategies, setStrategies}) => {
     const {id} = useParams()
-    const strategy = strategies.find(strat => strat.id == id)
+    const [strategy, setStrategy] = useState({})
+    const [displayArr, setDisplayArr] = useState("loading")
+    // const strategy = strategies.find(strat => strat.id == id)
 
-    let displayArr = "<p> loading... </p>"
+    // let displayArr = " loading... "
 
-    if (strategy) {
-        displayArr = strategy.legs.map(leg => <Leg key={leg.id} leg={leg} handleLegDelete={handleLegDelete} />)
-    }
+    useEffect(() => {
+         setStrategy(strategies.find(strat => strat.id == id))
+         
+        },[strategies, strategy, setStrategy])
+
+    useEffect(() => {
+        if (strategy && strategy.legs) {
+            setDisplayArr(strategy.legs.map(leg => <Leg key={leg.id} leg={leg} handleLegDelete={handleLegDelete} />))
+         }
+    }, [strategies, strategy])
+
+    console.log(strategy)
+    // console.log("strategy.legs:" + strategy.legs)
+   
 
     function addLegForm(newLeg){
         const updatedStrategy = strategy.legs.push(newLeg)
@@ -32,7 +45,6 @@ const Strategy = ({strategies, setStrategies}) => {
         strategy.legs = updatedLegs
         const updatedStrategies = strategies.map(strat => strat.id === strategyID ? strategy : strat)
         setStrategies(updatedStrategies)
-
     }
 
     return (

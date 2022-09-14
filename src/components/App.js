@@ -26,6 +26,14 @@ function App() {
     setStrategies(updatedStrategies)
  }
 
+
+ function updateStrategies(updatedStrategy){
+  // debugger
+  // console.log(updatedStrategy)
+  const updatedStrategies = strategies.map(strat => strat.id === updatedStrategy.id ? updatedStrategy : strat)
+  setStrategies(updatedStrategies)
+}
+
   function handleDelete(stratId){
     fetch(`http://localhost:9292/strategies/${stratId}`,{
       method: "DELETE",
@@ -46,7 +54,7 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/strategies" element={<Strategies strategies={strategies} handleDelete={handleDelete} />} />
         <Route exact path="/strategies/new" element={<StrategyForm strategies={strategies} onFormSubmit={addForm} />} />
-        <Route exact path="/strategies/:id/edit" element={<EditStrategy strategies={strategies} />} />
+        <Route exact path="/strategies/:id/edit" element={<EditStrategy strategies={strategies} onFormSubmit={updateStrategies} />} />
         <Route path="/strategies/:id" element={<Strategy strategies={strategies} onFormSubmit={addForm} setStrategies={setStrategies} handleDelete={handleDelete}/>} /> 
       </Routes>
     </Router>
